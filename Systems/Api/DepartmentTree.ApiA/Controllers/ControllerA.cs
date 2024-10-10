@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace DepartmentTree.ApiA.Controllers;
+namespace DepartmentTree.ApiB.Controllers;
 
 [Authorize(Policy = "ServiceBPolicy")]
 [ApiController]

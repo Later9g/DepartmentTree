@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -7,8 +7,24 @@
     <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
 
+	
+		<ItemGroup>
+		<PackageReference Include="Duende.IdentityServer" Version="7.0.6" />
+		<PackageReference Include="Duende.IdentityServer.AspNetIdentity" Version="7.0.6" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
+		<PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
+		<PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
+		<PackageReference Include="Serilog.Expressions" Version="4.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.0" />
+	</ItemGroup>
+	
+	
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Services\DepartmentTree.Services.Logger\DepartmentTree.Services.Logger.csproj" />
+    <ProjectReference Include="..\..\..\Services\DepartmentTree.Services.Settings\DepartmentTree.Services.Settings.csproj" />
     <ProjectReference Include="..\..\..\Services\DepartmnetTree.Services.ServiceB\DepartmnetTree.Services.ServiceB.csproj" />
+    <ProjectReference Include="..\..\..\Shared\DepartmentTree.Common\DepartmentTree.Common.csproj" />
   </ItemGroup>
 
 </Project>

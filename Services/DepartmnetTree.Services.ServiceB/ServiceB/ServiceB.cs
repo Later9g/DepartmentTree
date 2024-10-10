@@ -1,6 +1,7 @@
 ﻿using DepartmentTree.Context;
 using DepartmentTree.Context.Entities;
 using DepartmentTree.Services.ServiceA;
+using IdentityModel.Client;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
@@ -21,6 +22,22 @@ public class ServiceB : IServiceB
 
     public async Task<UnitStatusModel> GetStatusesAsync(int Id)
     {
+
+        var discoveryDocument = await httpClient.GetDiscoveryDocumentAsync("https://localhost:5000");
+        var tokenResponse = await httpClient.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
+        {
+            Address = discoveryDocument.TokenEndpoint,
+            ClientId = "service_b",        
+            ClientSecret = "secret",       
+            Scope = "service_a"            
+        });
+
+        if (tokenResponse.IsError)
+        {
+            throw new Exception("Failed to retrieve token.");
+        }
+
+        httpClient.SetBearerToken(tokenResponse.AccessToken);
 
         var response = await httpClient.GetAsync($"http://localhost:5250/api/status/?Id={Id}");
         response.EnsureSuccessStatusCode();
@@ -68,7 +85,6 @@ public class ServiceB : IServiceB
     {
         using var context = await dbContextFactory.CreateDbContextAsync();
 
-        // Получение существующих units
         var existingUnits = await GetUnitsAsync();
 
         foreach (var model in models)

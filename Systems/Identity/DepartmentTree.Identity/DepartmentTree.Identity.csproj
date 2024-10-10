@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Services\DepartmentTree.Services.Logger\DepartmentTree.Services.Logger.csproj" />
     <ProjectReference Include="..\..\..\Services\DepartmentTree.Services.Settings\DepartmentTree.Services.Settings.csproj" />
     <ProjectReference Include="..\..\..\Shared\DepartmentTree.Common\DepartmentTree.Common.csproj" />
   </ItemGroup>
