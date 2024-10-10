@@ -1,0 +1,6 @@
+@DepartmentTree.ApiB_HostAddress = http://localhost:5285
+
+GET {{DepartmentTree.ApiB_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

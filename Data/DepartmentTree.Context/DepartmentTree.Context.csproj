@@ -28,4 +28,8 @@
 	    <ProjectReference Include="..\DepartmentTree.Context.Entities\DepartmentTree.Context.Entities.csproj" />
 	  </ItemGroup>
 
+	  <ItemGroup>
+	    <Folder Include="Migrations\" />
+	  </ItemGroup>
+
 </Project>

@@ -1,0 +1,6 @@
+@DepartmentTree.Identity_HostAddress = http://localhost:5146
+
+GET {{DepartmentTree.Identity_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

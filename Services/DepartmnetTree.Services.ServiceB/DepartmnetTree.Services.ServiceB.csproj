@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\DepartmentTree.Context\DepartmentTree.Context.csproj" />
+    <ProjectReference Include="..\..\Shared\DepartmentTree.Common\DepartmentTree.Common.csproj" />
+    <ProjectReference Include="..\..\Systems\Identity\DepartmentTree.Identity\DepartmentTree.Identity.csproj" />
+    <ProjectReference Include="..\DepartmnetTree.Services.ServiceA\DepartmnetTree.Services.ServiceA.csproj" />
+  </ItemGroup>
+
+</Project>
