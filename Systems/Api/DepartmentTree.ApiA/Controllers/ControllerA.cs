@@ -1,4 +1,5 @@
-﻿using DepartmentTree.Context;
+﻿using Asp.Versioning;
+using DepartmentTree.Context;
 using DepartmentTree.Services.ServiceA;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,31 +8,31 @@ using Microsoft.EntityFrameworkCore;
 namespace DepartmentTree.ApiB.Controllers;
 
 [Authorize(Policy = "ServiceBPolicy")]
+[ApiVersion("1.0")]
 [ApiController]
 [Route("api/[controller]")]
-public class AControllerA : ControllerBase
+[ApiExplorerSettings(GroupName = "ControllerA")]
+public class ControllerA : ControllerBase
 {
     private readonly IServiceA serviceA;
     private readonly IDbContextFactory<AppDbContext> dbContextFactory;
 
-    public AControllerA(IServiceA serviceA, IDbContextFactory<AppDbContext> dbContextFactory)
+    public ControllerA(IServiceA serviceA, IDbContextFactory<AppDbContext> dbContextFactory)
     {
         this.serviceA = serviceA;
         this.dbContextFactory = dbContextFactory;
     }
 
-    [HttpGet]
-    public async Task<UnitStatusModel> GetStatusById( int Id)
+    [HttpGet()]
+    public async Task<IActionResult> GetStatusById([FromQuery] int id)
     {
-        using var context = await dbContextFactory.CreateDbContextAsync();
-        var units = await context.Units.ToListAsync();
-        var u = units.FirstOrDefault(x => x.Id == Id);
+        var status = await serviceA.GetUnitStatusByIdAsync(id);
 
-        if (u == null)
+        if (status == null)
         {
-            Console.WriteLine($"Unit with Id {Id} not found.");
-            return null;
+            return NotFound($"Unit with Id {id} not found.");
         }
-        return new UnitStatusModel() { Status = u.Status };
+
+        return Ok(status);
     }
 }

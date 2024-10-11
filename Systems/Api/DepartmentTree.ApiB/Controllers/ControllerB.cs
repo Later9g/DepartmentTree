@@ -1,10 +1,13 @@
-﻿using DepartmnetTree.Services.ServiceB;
+﻿using Asp.Versioning;
+using DepartmentTree.Services.ServiceB;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DepartmentTree.ApiB.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[ApiVersion("1.0")]
+[ApiExplorerSettings(GroupName = "ControllerB")]
 public class ControllerB : ControllerBase
 {
     private readonly IServiceB serviceB;

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace DepartmnetTree.Services.ServiceB;
+namespace DepartmentTree.Services.ServiceB;
 
 public static class Bootstrapper
 {

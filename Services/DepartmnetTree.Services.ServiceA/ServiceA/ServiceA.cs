@@ -1,4 +1,5 @@
-﻿using DepartmentTree.Services.ServiceA;
+﻿using DepartmentTree.Context;
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
 namespace DepartmentTree.Services.ServiceA;
@@ -6,18 +7,24 @@ namespace DepartmentTree.Services.ServiceA;
 public class ServiceA : IServiceA
 {
     private readonly HttpClient httpClient;
+    private readonly IDbContextFactory<AppDbContext> dbContextFactory;
 
-    public ServiceA (HttpClient httpClient)
+    public ServiceA (HttpClient httpClient, IDbContextFactory<AppDbContext> dbContextFactory)
     {
         this.httpClient = httpClient;
+        this.dbContextFactory = dbContextFactory;
     }
 
-    public async Task<IEnumerable<UnitStatusModel>> GetStatusesAsync()
+    public async Task<UnitStatusModel> GetUnitStatusByIdAsync(int id)
     {
-        var response = await httpClient.GetAsync("api/status");
-        response.EnsureSuccessStatusCode();
+        using var context = await dbContextFactory.CreateDbContextAsync();
+        var unit = await context.Units.FirstOrDefaultAsync(x => x.Id == id);
 
-        var content = await response.Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<IEnumerable<UnitStatusModel>>(content);
+        if (unit == null)
+        {
+            Console.WriteLine($"Unit with Id {id} not found.");
+            return null;
+        }
+        return new UnitStatusModel() { Status = unit.Status };
     }
 }

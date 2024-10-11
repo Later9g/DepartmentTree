@@ -12,7 +12,8 @@ public static class LoggerConfiguration
     /// <summary>
     /// Add logger
     /// </summary>
-    public static void AddAppLogger(this WebApplicationBuilder builder, LogSettings logSettings)
+    public static void AddAppLogger(this WebApplicationBuilder builder, MainSettings mainSettings,
+        LogSettings logSettings)
     {
         var loggerConfiguration = new Serilog.LoggerConfiguration();
 

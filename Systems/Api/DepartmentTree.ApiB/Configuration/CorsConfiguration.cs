@@ -14,15 +14,7 @@ public static class CorsConfiguration
     /// <param name="services">Services collection</param>
     public static IServiceCollection AddAppCors(this IServiceCollection services)
     {
-        services.AddSingleton<ICorsPolicyService>((container) =>
-        {
-            var logger = container.GetRequiredService<ILogger<DefaultCorsPolicyService>>();
-
-            return new DefaultCorsPolicyService(logger)
-            {
-                AllowAll = true
-            };
-        });
+        services.AddCors();
 
         return services;
     }

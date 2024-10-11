@@ -1,15 +1,41 @@
+using DepartmentTree.Context;
+using DepartmentTree.Identity;
+using DepartmentTree.Identity.Configuration;
+using DepartmentTree.Services.Settings;
+using DepartmentTree.Settings;
+using Microsoft.EntityFrameworkCore;
+
+var logSettings = Settings.Load<LogSettings>("Log");
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.AddAppLogger(logSettings);
 
-builder.Services.AddControllers();
+// Configure services
+var services = builder.Services;
 
-var app = builder.Build();
+services.AddAppCors();
+
+services.AddHttpContextAccessor();
+
+builder.Services.AddDbContextFactory<AppDbContext>(options =>
+        options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+services.AddAppHealthChecks();
+
+services.RegisterAppServices();
+
+services.AddIS4();
+
 
 // Configure the HTTP request pipeline.
 
-app.UseAuthorization();
+var app = builder.Build();
 
-app.MapControllers();
+app.UseAppCors();
+
+app.UseAppHealthChecks();
+
+app.UseIS4();
 
 app.Run();

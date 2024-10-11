@@ -2,16 +2,19 @@
 
 namespace DepartmentTree.ApiA.Configuration;
 
-public class AuthConfiguration
+public static class AuthConfiguration
 {
-    public void ConfigureServices(IServiceCollection services)
+    public static void ConfigureServices(this IServiceCollection services)
     {
         services.AddAuthentication("Bearer")
             .AddJwtBearer("Bearer", options =>
             {
-                options.Authority = "https://localhost:5000"; // IdentityServer4 URL
+                options.Authority = "http://localhost:5146"; // IdentityServer4 URL
+                options.RequireHttpsMetadata = false;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
+                    ValidateIssuer = true,
+                    ValidIssuer = "http://localhost:5146",
                     ValidateAudience = false
                 };
             });
@@ -28,7 +31,7 @@ public class AuthConfiguration
         services.AddControllers();
     }
 
-    public void Configure(IApplicationBuilder app)
+    public static void Configure(this IApplicationBuilder app)
     {
         app.UseRouting();
         app.UseAuthentication();

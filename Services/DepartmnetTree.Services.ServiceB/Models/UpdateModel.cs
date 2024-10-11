@@ -1,4 +1,4 @@
-﻿namespace DepartmnetTree.Services.ServiceB;
+﻿namespace DepartmentTree.Services.ServiceB;
 
 public class UpdateModel
 {

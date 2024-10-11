@@ -2,5 +2,5 @@
 
 public interface IServiceA
 {
-    public Task<IEnumerable<UnitStatusModel>> GetStatusesAsync();
+    public Task<UnitStatusModel> GetUnitStatusByIdAsync(int id);
 }

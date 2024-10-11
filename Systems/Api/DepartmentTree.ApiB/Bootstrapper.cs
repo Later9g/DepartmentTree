@@ -1,12 +1,14 @@
-﻿using DepartmentTree.Services.Settings;
+﻿using DepartmentTree.Services.ServiceA;
+using DepartmentTree.Services.Settings;
 
-namespace DepartmnetTree.Services.ServiceB;
+namespace DepartmentTree.Services.ServiceB;
 
 public static class Bootstrapper
 {
-    public static IServiceCollection AddServiceA(this IServiceCollection services)
+    public static IServiceCollection RegisterAppServices(this IServiceCollection services)
     {
         services
+            .AddServiceA()
             .AddServiceB()
             .AddMainSettings()
             .AddLogSettings()

@@ -1,19 +1,15 @@
 ﻿using DepartmentTree.Services.Settings;
-using DepartmentTree.Services.ServiceA;
-using DepartmentTree.Services.ServiceB;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace DepartmentTree.Services.ServiceA;
+namespace DepartmentTree.Identity;
 
 public static class Bootstrapper
 {
     public static IServiceCollection RegisterAppServices(this IServiceCollection services)
     {
         services
-            .AddServiceA()
-            .AddServiceB()
             .AddMainSettings()
-            .AddLogSettings()
-            .AddSwaggerSettings();
+            .AddLogSettings();
 
         return services;
     }
