@@ -19,12 +19,12 @@ builder.AddAppLogger(mainSetting, logSetting);
 
 var services = builder.Services;
 
+services.AddAppCors();
 services.AddAppVersioning();
 services.AddHttpClient();
 services.AddHttpContextAccessor();
 services.AddDbContextFactory<AppDbContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-services.AddAppCors();
 services.AddAppHealthChecks();
 services.RegisterAppServices();
 services.AddAppSwagger(mainSetting, swaggerSettings, identitySettings);
@@ -35,10 +35,9 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-app.Configure();
-
-app.UseAppSwagger();
 app.UseAppCors();
+app.Configure();
+app.UseAppSwagger();
 app.UseAppHealthChecks();
 app.UseAuthorization();
 app.MapControllers();
