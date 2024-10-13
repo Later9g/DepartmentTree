@@ -32,7 +32,7 @@ IdentityServer — используется для реализации защи
 ### Настройка базы данных:
 Убедитесь, что установлен PostgreSQL.<br/>
 Настройте строку подключения в файле appsettings.json проекта ServiceB.<br/>
-Примени миграцию к базе данных.<br/>
+Примените миграцию к базе данных.<br/>
 ### Запуск API 
 `Systems\Api\DepartmentTree.ApiA`<br/>
 `dotnet run`
