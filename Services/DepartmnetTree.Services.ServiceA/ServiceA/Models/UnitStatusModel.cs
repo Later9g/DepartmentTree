@@ -1,6 +1,9 @@
-﻿namespace DepartmentTree.Services.ServiceA  ;
+﻿using System.Text.Json.Serialization;
+
+namespace DepartmentTree.Services.ServiceA  ;
 public class UnitStatusModel
-    {
-        public string Status { get; set; }
-    }
+{
+    [JsonPropertyName("status")]
+    public string Status { get; set; }
+}
 

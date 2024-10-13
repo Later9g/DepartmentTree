@@ -28,16 +28,20 @@ const UnitList = () => {
     const buildTree = (units) => {
         const map = {};
         units.forEach(unit => {
-            map[unit.id] = { ...unit, children: [] };
+            map[unit.id] = { ...unit, children: [] }; // Создаем объект для каждого подразделения
         });
+    
         const tree = [];
         units.forEach(unit => {
-            if (unit.parentId) {
+            if (unit.parentId && map[unit.parentId]) { 
+                // Проверяем, существует ли parentId и есть ли такое подразделение в map
                 map[unit.parentId].children.push(map[unit.id]);
             } else {
+                // Если parentId нет или родитель не найден, добавляем в корень дерева
                 tree.push(map[unit.id]);
             }
         });
+    
         return tree;
     };
 

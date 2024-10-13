@@ -5,25 +5,21 @@ const SyncForm = () => {
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
-
+    
         if (!file) return;
-        console.log("Файл выбран:", file.name);
-
+    
         const reader = new FileReader();
         
         reader.onload = (e) => {
             const fileContent = e.target.result;
             const lines = fileContent.split('\n');
             const unitList = [];
-
+    
             lines.forEach((line) => {
                 let [id, parentId, name, status] = line.split(' ');
-
-                if (!parentId) {
-                    parentId = null;
-                } else {
-                    parentId = parentId.trim();
-                }
+    
+                // Проверка parentId на пустое значение или null
+                parentId = parentId ? parentId.trim() : null;
                 
                 if (id && name && status) {
                     unitList.push({
@@ -34,11 +30,11 @@ const SyncForm = () => {
                     });
                 }
             });
-
+    
             setUnits(unitList);
             console.log(unitList);
         };
-
+    
         reader.readAsText(file);
     };
 

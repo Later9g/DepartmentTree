@@ -1,14 +1,17 @@
 import './App.css';
 import UnitList from './components/UnitList';
-import { sync } from './services/UnitService';
 import SyncForm from './components/SyncForm';
 
 function App() {
   return (
     <div className="App">
       <header>
-        <SyncForm></SyncForm>
-        <UnitList/>
+        <div className="sync-form">
+          <SyncForm />
+        </div>
+        <div className="unit-list-container">
+          <UnitList />
+        </div>
       </header>
     </div>
   );

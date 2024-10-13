@@ -57,6 +57,7 @@ public class ServiceB : IServiceB
         }
 
         var content = await response.Content.ReadAsStringAsync();
+        logger.Information($"Response content for ID {id}: {content}");
         var status = JsonSerializer.Deserialize<UnitStatusModel>(content);
 
         if (status == null)
