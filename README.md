@@ -32,6 +32,7 @@ IdentityServer — используется для реализации защи
 ### Настройка базы данных:
 Убедитесь, что установлен PostgreSQL.<br/>
 Настройте строку подключения в файле appsettings.json проекта ServiceB.<br/>
+Примени миграцию к базе данных.<br/>
 ### Запуск API 
 `Systems\Api\DepartmentTree.ApiA`<br/>
 `dotnet run`
@@ -71,6 +72,6 @@ IdentityServer — используется для реализации защи
 ## Структура входного файла:
 Файл должен состоять из строк, составляющих id, parentId, имя и статус подразделения.<br/>
 ### Пример:
-1  Finance_subdivision Активно<br/>
-2 1 Marketing_subdivision Заблокировано<br/>
+`1  Finance_subdivision Активно`<br/>
+`2 1 Marketing_subdivision Заблокировано`<br/>
 То есть если подразделение находится на вешине дерева, то в parentId ничего не указывается.
