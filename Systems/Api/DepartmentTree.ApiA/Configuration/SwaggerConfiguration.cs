@@ -7,8 +7,6 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System.Reflection;
 using Asp.Versioning.ApiExplorer;
-using DepartmentTree.Common.Security;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
 /// <summary>
 /// Swagger configuration

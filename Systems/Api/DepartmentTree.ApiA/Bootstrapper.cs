@@ -10,7 +10,6 @@ public static class Bootstrapper
     {
         services
             .AddServiceA()
-            .AddServiceB()
             .AddMainSettings()
             .AddLogSettings()
             .AddSwaggerSettings();

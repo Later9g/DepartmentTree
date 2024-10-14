@@ -12,14 +12,12 @@ public class ServiceB : IServiceB
 {
     private readonly HttpClient httpClient;
     private readonly IDbContextFactory<AppDbContext> dbContextFactory;
-    private readonly IServiceA serviceA;
     private readonly ILogger logger;
 
-    public ServiceB(HttpClient httpClient, IDbContextFactory<AppDbContext> dbContextFactory,IServiceA serviceA,ILogger logger)
+    public ServiceB(HttpClient httpClient, IDbContextFactory<AppDbContext> dbContextFactory,ILogger logger)
     {
         this.httpClient = httpClient;
         this.dbContextFactory = dbContextFactory;
-        this.serviceA = serviceA;
         this.logger = logger;
     }
 
